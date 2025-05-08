@@ -36,8 +36,32 @@ while True:
     except ValueError:
         print("Wprowadź poprawną liczbę zmiennoprzecinkową.")
 
+while True:
+    lowerInterval = input("Podaj dolna wartosc przedzialu").strip()
+    try:
+        lowerInterval = float(lowerInterval)
+        break
+    except ValueError:
+        print("Wprowadź poprawną liczbę zmiennoprzecinkową.")
+
+while True:
+    higherInterval = input("Podaj gorna wartosc przedzialu").strip()
+    try:
+        higherInterval = float(higherInterval)
+        break
+    except ValueError:
+        print("Wprowadź poprawną liczbę zmiennoprzecinkową.")
+
+while True:
+    numberOfRectangles = input("Podaj ilosc podzialu przedzialow").strip()
+    try:
+        numberOfRectangles = int(numberOfRectangles)
+        break
+    except ValueError:
+        print("Wprowadź poprawną liczbę calkowita.")
+
 print("\nObliczanie metodą Simpsona...")
-simpson_result, simpson_nodes = simpson_infinite(func, tol)
+simpson_result, simpson_nodes = simpson_infinite(func,lowerInterval, higherInterval, numberOfRectangles, tol)
 print(f"Wynik całkowania (Simpson): {simpson_result:.10f}")
 
 print("\nObliczanie metodą Gaussa-Laguerre...")
