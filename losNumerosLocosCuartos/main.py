@@ -71,4 +71,4 @@ print(f"Wynik całkowania (Gauss-Laguerre): {gauss_result:.10f}")
 print("\nRóżnica między metodami:", abs(simpson_result - gauss_result))
 
 print("\nRysowanie wykresu funkcji i jej funkcji ważonej...")
-rysuj_calkowanie(func, simpson_nodes, gauss_nodes, przedzial=(0, 10))
+rysuj_calkowanie(func, simpson_nodes, gauss_nodes, przedzial=(lowerInterval - 1, higherInterval + 1))
