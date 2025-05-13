@@ -10,7 +10,7 @@ def simpson_weighted(f, a, b, n):
     S = fx[0] + fx[-1] + 4 * sum(fx[1:-1:2]) + 2 * sum(fx[2:-2:2])
     return deltaX * S / 3, list(x)
 
-def simpson_infinite(f, start, n_per_iter, tol, max_iter=100):
+def simpson_infinite(f, n_per_iter, tol, max_iter=100):
     total = 0.0
     all_nodes = []
     prev_total = None
