@@ -21,3 +21,4 @@ def gauss_laguerre_multiple_n_with_tol(f, n_values, tol):
         prev_val = val
 
     return results
+
