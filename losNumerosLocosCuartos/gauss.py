@@ -7,12 +7,15 @@ def gauss_laguerre(f, n):
 
 def gauss_laguerre_multiple_n_with_tol(f, n_values, tol):
     results = {}
+    nodes_list = []  # Lista do przechowywania węzłów dla wszystkich n
+
     prev_val = None
 
     for n in n_values:
         val, nodes = gauss_laguerre(f, n)
         print(f"Wynik całkowania Gauss-Laguerre dla n={n}: {val:.10f}")
         results[n] = (val, nodes)
+        nodes_list.append(nodes)  # Dodanie węzłów do listy
 
         if prev_val is not None and abs(val - prev_val) < tol:
             print(f"Osiągnięto dokładność {tol} dla n={n}. Zatrzymuję dalsze liczenie.")
@@ -20,5 +23,4 @@ def gauss_laguerre_multiple_n_with_tol(f, n_values, tol):
 
         prev_val = val
 
-    return results
-
+    return results, nodes_list  # Zwrócenie wyników oraz listy węzłów

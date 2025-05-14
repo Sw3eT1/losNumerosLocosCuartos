@@ -4,11 +4,11 @@ from simpson import simpson_infinite
 from wykresy import rysuj_calkowanie
 
 functions = {
-    "1": ("3x-2", lambda x: 3*x-2),
-    "2": ("x-2", lambda x: x-2),
-    "3": ("x^3-4x^2+x+6", lambda x: x**3-4*x**2+x+6),
-    "4": ("sin(x)", lambda x: np.sin(x)),
-    "5": ("sin(x^2)", lambda x: np.sin(x**2))
+    "1": ("x", lambda x: x),
+    "2": ("x^2", lambda x: x**2),
+    "3": ("sin(x)", lambda x: np.sin(x)),
+    "4": ("cos(x)", lambda x: np.cos(x)),
+    "5": ("e^(-x) * x^2", lambda x: np.exp(-x) * x**2)
 }
 
 # --- Wybór funkcji przez użytkownika ---
@@ -37,13 +37,14 @@ print(f"Wynik całkowania (Simpson): {simpson_result:.10f}")
 # --- Gauss dla wielu n ---
 print("\nObliczanie metodą Gaussa-Laguerre...")
 gauss_n_values = [2, 3, 4, 5]
-gauss_results = gauss_laguerre_multiple_n_with_tol(func, gauss_n_values, tol)
+gauss_results,gauss_nodes = gauss_laguerre_multiple_n_with_tol(func, gauss_n_values, tol)
 
 # Ostatni (najdokładniejszy) wynik do porównania i wykresu
 gauss_final_n = max(gauss_results.keys())
 gauss_final_val, gauss_final_nodes = gauss_results[gauss_final_n]
 print(f"\nRóżnica między metodami: {abs(simpson_result - gauss_final_val):.10f}")
+print(gauss_nodes)
 
 # --- Wykres ---
 print("\nRysowanie zcałkowanej funkcji pierwotnej...")
-rysuj_calkowanie(func, lower, upper, n_rects)
+rysuj_calkowanie(func,simpson_nodes,gauss_nodes, przedzial=(lower, upper))
